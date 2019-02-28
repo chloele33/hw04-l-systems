@@ -60,6 +60,9 @@ class ShaderProgram {
     this.unifEye   = gl.getUniformLocation(this.prog, "u_Eye");
     this.unifRef   = gl.getUniformLocation(this.prog, "u_Ref");
     this.unifUp   = gl.getUniformLocation(this.prog, "u_Up");
+    // to ensure you can see a basic test OBJ file centered at the origin
+    this.attrNor = gl.getAttribLocation(this.prog, "vs_Nor");
+
   }
 
   use() {
