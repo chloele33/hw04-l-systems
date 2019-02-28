@@ -15,6 +15,7 @@ export default class DrawingRule {
             for (const [p, f] of rule.entries()) {
                 if (xi > sumProb && xi <= sumProb + p) {
                     func = f;
+                    break;
                 }
                 sumProb += p;
             }

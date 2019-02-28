@@ -18,11 +18,11 @@ export default class ExpansionRule {
             for (const [s, p] of ruleArray) {
                 if (xi > sumProb && xi <= sumProb + p) {
                     result = s;
+                    break;
                 }
                 sumProb += p;
             }
             return result;
-
         }
     }
 
