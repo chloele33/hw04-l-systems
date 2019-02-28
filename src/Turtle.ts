@@ -36,7 +36,7 @@ class Turtle {
 
         let rad = deg2Rad * deg;
         mat4.fromRotation(rotMat, rad, axis);
-        let ori = vec4.fromValues(this.orient[0], this.orient[1], this.orient[2], 0.0);
+        var ori = vec4.fromValues(this.orient[0], this.orient[1], this.orient[2], 0.0);
         ori = vec4.transformMat4(ori, ori, rotMat);
         this.orient = vec3.fromValues(ori[0], ori[1], ori[2]);
     }

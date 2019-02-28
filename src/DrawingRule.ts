@@ -23,7 +23,7 @@ export default class DrawingRule {
         }
     }
 
-    set(str: string, prob: number, func: any) {
+    set(str: string, func: any, prob: number) {
         if (this.drawingMap.has(str)) {
             this.drawingMap.get(str).set(prob, func);
         } else {
