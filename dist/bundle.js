@@ -6146,7 +6146,7 @@ function loadScene() {
     // load mud
     mudScene = new __WEBPACK_IMPORTED_MODULE_9__geometry_TreeScene__["a" /* default */]();
     let OBJ = __webpack_require__(6);
-    let mudDada = Object(__WEBPACK_IMPORTED_MODULE_6__globals__["b" /* readTextFile */])("../src/obj/mud.obj");
+    let mudDada = Object(__WEBPACK_IMPORTED_MODULE_6__globals__["b" /* readTextFile */])("https://raw.githubusercontent.com/chloele33/lsystem-tree/master/src/obj/mud.obj");
     let mesh = new OBJ.Mesh(mudDada);
     let mudMesh = new __WEBPACK_IMPORTED_MODULE_10__geometry_CustomMesh__["a" /* default */](mesh);
     mudMesh.translate(__WEBPACK_IMPORTED_MODULE_0_gl_matrix__["d" /* vec4 */].fromValues(0, -14, -20, 0));
@@ -16649,16 +16649,16 @@ class ShaderProgram {
 const deg2Rad = 0.017453292519943295769236907684886;
 class LSystem {
     constructor(axiom, iterations, angle, step) {
-        console.log('hieCr');
         this.axiom = axiom;
         this.iterations = iterations;
         this.angle = angle;
         this.step = step;
         // load custom files
         this.OBJ = __webpack_require__(6);
-        var meshData = Object(__WEBPACK_IMPORTED_MODULE_5__globals__["b" /* readTextFile */])("/src/obj/cylinder.obj");
+        // var meshData = readTextFile("/src/obj/cylinder.obj");
+        var meshData = Object(__WEBPACK_IMPORTED_MODULE_5__globals__["b" /* readTextFile */])("https://raw.githubusercontent.com/chloele33/lsystem-tree/master/src/obj/cylinder.obj");
         this.branch = new this.OBJ.Mesh(meshData);
-        meshData = Object(__WEBPACK_IMPORTED_MODULE_5__globals__["b" /* readTextFile */])("/src/obj/leaf2.obj");
+        meshData = Object(__WEBPACK_IMPORTED_MODULE_5__globals__["b" /* readTextFile */])("https://raw.githubusercontent.com/chloele33/lsystem-tree/master/src/obj/leaf2.obj");
         this.leaf = new this.OBJ.Mesh(meshData);
         // set up expansion rules
         this.expansionRules = new __WEBPACK_IMPORTED_MODULE_0__ExpansionRule__["a" /* default */]();
@@ -16685,7 +16685,6 @@ class LSystem {
         this.turtle = new __WEBPACK_IMPORTED_MODULE_1__Turtle__["a" /* Turtle */](__WEBPACK_IMPORTED_MODULE_3_gl_matrix__["d" /* vec4 */].fromValues(0, -60, -220, 1), __WEBPACK_IMPORTED_MODULE_3_gl_matrix__["d" /* vec4 */].fromValues(0, 1, 0, 0), 0);
     }
     process() {
-        console.log('hierP');
         this.expandString();
         // set up turtle
         this.turtleStack = new __WEBPACK_IMPORTED_MODULE_1__Turtle__["b" /* TurtleStack */]();
@@ -16703,13 +16702,11 @@ class LSystem {
                     exp += c;
                     continue;
                 }
-                console.log(result);
                 exp += this.expansionRules.expand(c);
             }
             result = exp;
         }
         this.expandedString = result;
-        console.log("out" + result);
         return;
     }
     setupExpansionRules() {
