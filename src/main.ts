@@ -54,7 +54,7 @@ function loadScene() {
   // load mud
   mudScene = new TreeScene();
   let OBJ = require('webgl-obj-loader');
-  let mudDada = readTextFile("../src/obj/mud.obj");
+  let mudDada = readTextFile("https://raw.githubusercontent.com/chloele33/lsystem-tree/master/src/obj/mud.obj");
   let mesh = new OBJ.Mesh(mudDada);
   let mudMesh = new CustomMesh(mesh);
   mudMesh.translate(vec4.fromValues(0, -14, -20, 0));

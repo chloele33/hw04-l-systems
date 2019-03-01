@@ -44,10 +44,11 @@ export default class LSystem {
         // load custom files
         this.OBJ = require('webgl-obj-loader');
 
-        var meshData = readTextFile("/src/obj/cylinder.obj");
+       // var meshData = readTextFile("/src/obj/cylinder.obj");
+        var meshData = readTextFile("https://raw.githubusercontent.com/chloele33/lsystem-tree/master/src/obj/cylinder.obj");
         this.branch = new this.OBJ.Mesh(meshData);
 
-        meshData = readTextFile("/src/obj/leaf2.obj");
+        meshData = readTextFile("https://raw.githubusercontent.com/chloele33/lsystem-tree/master/src/obj/leaf2.obj");
         this.leaf = new this.OBJ.Mesh(meshData);
 
         // set up expansion rules
