@@ -34,8 +34,6 @@ export default class LSystem {
 
 
     constructor(axiom: string, iterations: number, angle: number, step: number) {
-        console.log('hieCr');
-
         this.axiom = axiom;
         this.iterations = iterations;
         this.angle = angle;
@@ -87,7 +85,6 @@ export default class LSystem {
 
 
     process() {
-        console.log('hierP');
         this.expandString();
 
         // set up turtle
@@ -109,13 +106,11 @@ export default class LSystem {
                     exp += c;
                     continue;
                 }
-                console.log(result);
                 exp += this.expansionRules.expand(c);
             }
             result = exp;
         }
         this.expandedString = result;
-        console.log("out" + result);
 
         return;
     }
