@@ -7,22 +7,21 @@ export default class ExpansionRule {
     }
 
     expand(str: string) : string {
+        var resultStr: string;
         if (!this.expMap.has(str)) {
             return "";
         } else {
-            var xi: number = Math.random();
-            var result : string;
-            var ruleArray = this.expMap.get(str);
-            var sumProb = 0.0;
-            // iterate through the set
-            for (const [s, p] of ruleArray) {
-                if (xi > sumProb && xi <= sumProb + p) {
-                    result = s;
+            let ruleArray = this.expMap.get(str);
+            let probSum = 0;
+            let xi = Math.random();
+            for (let i = 0; i < ruleArray.length; i++) {
+                probSum += ruleArray[i][1];
+                if (xi <= probSum) {
+                    resultStr = resultStr + ruleArray[i][0];
                     break;
                 }
-                sumProb += p;
             }
-            return result;
+            return resultStr;
         }
     }
 

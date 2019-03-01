@@ -1,33 +1,34 @@
 export default class DrawingRule {
-    drawingMap: Map<string, Map<number, any>>;
+    drawingMap: Map<string, Array<[number, number]>>;
     constructor () {
-        this.drawingMap = new Map<string, Map<number, any>>()
+        this.drawingMap = new Map<string, Array<[number, number]>>();
     }
 
     get(str: string): any {
         if (!this.drawingMap.has(str)) {
             return void{};
         } else {
-            var rule = this.drawingMap.get(str);
+            var ruleArray = this.drawingMap.get(str);
             var sumProb = 0.0;
             var xi = Math.random()
-            var func: any;
-            for (const [p, f] of rule.entries()) {
-                if (xi > sumProb && xi <= sumProb + p) {
-                    func = f;
+            let func: any;
+            for (let i = 0; i < ruleArray.length; i++) {
+                sumProb += ruleArray[i][1];
+                if (xi <= sumProb) {
+                    func = ruleArray[i][0];
                     break;
                 }
-                sumProb += p;
             }
             return func;
         }
     }
 
-    set(str: string, func: any, prob: number) {
+    set(str: string, func: number, prob: number) {
         if (this.drawingMap.has(str)) {
-            this.drawingMap.get(str).set(prob, func);
+            this.drawingMap.get(str).push([func, prob]);
         } else {
-            this.drawingMap.set(str, new Map<number, any>().set(prob, func));
+            var newRule : Array<[number, number]> = [[func, prob]];
+            this.drawingMap.set(str, newRule);
         }
     }
 

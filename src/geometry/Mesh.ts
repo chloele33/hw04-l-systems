@@ -11,6 +11,8 @@ class Mesh extends Drawable {
   colors: Float32Array;
   uvs: Float32Array;
   center: vec4;
+  offsets: Float32Array;
+
 
   objString: string;
 
@@ -28,6 +30,7 @@ class Mesh extends Drawable {
     let idxTemp: Array<number> = [];
 
     var loadedMesh = new Loader.Mesh(this.objString);
+    console.log("here");
 
     //posTemp = loadedMesh.vertices;
     for (var i = 0; i < loadedMesh.vertices.length; i++) {
@@ -57,7 +60,7 @@ class Mesh extends Drawable {
     this.generateIdx();
     this.generatePos();
     this.generateNor();
-    this.generateUV();
+    //this.generateUV();
     this.generateCol();
 
     this.count = this.indices.length;
@@ -73,11 +76,21 @@ class Mesh extends Drawable {
     gl.bindBuffer(gl.ARRAY_BUFFER, this.bufCol);
     gl.bufferData(gl.ARRAY_BUFFER, this.colors, gl.STATIC_DRAW);
 
-    gl.bindBuffer(gl.ARRAY_BUFFER, this.bufUV);
+   // gl.bindBuffer(gl.ARRAY_BUFFER, this.bufUV);
     gl.bufferData(gl.ARRAY_BUFFER, this.uvs, gl.STATIC_DRAW);
 
     console.log(`Created Mesh from OBJ`);
     this.objString = ""; // hacky clear
+  }
+
+  setInstanceVBOs(offsets: Float32Array, colors: Float32Array) {
+    this.colors = colors;
+    this.offsets = offsets;
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, this.bufCol);
+    gl.bufferData(gl.ARRAY_BUFFER, this.colors, gl.STATIC_DRAW);
+    //gl.bindBuffer(gl.ARRAY_BUFFER, this.bufTranslate);
+    gl.bufferData(gl.ARRAY_BUFFER, this.offsets, gl.STATIC_DRAW);
   }
 };
 

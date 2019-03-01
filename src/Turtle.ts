@@ -8,37 +8,43 @@ const deg2Rad = 0.017453292519943295769236907684886;
 
 
 class Turtle {
-    pos: vec3;
-    orient: vec3;
+    pos: vec4;
+    orient: vec4;
     depth: number;
 
     // up: vec3;
     // forward: vec3;
     // left: vec3;
 
-    constructor(pos: vec3, ori: vec3, depth: number) {
-        this.pos = pos;
-        this.orient = ori;
-        this.depth = depth;
+    constructor(pos: vec4, orient: vec4, depth: number) {
+        let tempPos = vec4.create();
+        vec4.add(tempPos, tempPos, pos);
+        this.pos = tempPos;
+
+        let tempOrient = vec4.create();
+        vec4.add(tempOrient, tempOrient, orient);
+        this.orient = tempOrient;
+
+        let tempDepth = 0;
+        tempDepth = tempDepth + depth;
+        this.depth = tempDepth;
     }
 
     moveForward(d: number) {
-        let dist = vec3.create();
-        vec3.multiply(dist, [d, d, d], this.orient);
-        vec3.add(this.pos, this.pos, dist);
+        let dist = vec4.create();
+        vec4.multiply(dist, [d, d, d, 1], this.orient);
+        vec4.add(this.pos, this.pos, dist);
     }
 
-    rotate(axis: vec3, deg: number) {
-        let rotMat = mat4.fromValues(0, 0, 0, 0,
+    public rotate(axis: vec3, deg: number) {
+        let rotmat = mat4.fromValues(0, 0, 0, 0,
             0, 0, 0, 0,
             0, 0, 0, 0,
             0, 0, 0, 0);
 
         let rad = deg2Rad * deg;
-        mat4.fromRotation(rotMat, rad, axis);
-        var ori = vec4.fromValues(this.orient[0], this.orient[1], this.orient[2], 0.0);
-        ori = vec4.transformMat4(ori, ori, rotMat);
-        this.orient = vec3.fromValues(ori[0], ori[1], ori[2]);
+        mat4.fromRotation(rotmat, rad, axis);
+        vec4.transformMat4(this.orient, this.orient, rotmat);
     }
 
 }

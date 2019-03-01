@@ -11,6 +11,14 @@ export default class CustomMesh extends Drawable {
     meshPos: any;
     meshNor: any;
 
+    indices: Uint32Array;
+    positions: Float32Array;
+    normals: Float32Array;
+    colors: Float32Array;
+    uvs: Float32Array;
+    center: vec4;
+    offsets: Float32Array;
+
     vertList = new Array<vec4>();
     normList = new Array<vec4>();
 
@@ -72,7 +80,7 @@ export default class CustomMesh extends Drawable {
         this.updateArrays();
     }
 
-    translate(v: vec3) {
+    translate(v: vec4) {
         for (let i = 0; i < this.vertList.length; i++) {
             this.vertList[i][0] += v[0];
             this.vertList[i][1] += v[1];

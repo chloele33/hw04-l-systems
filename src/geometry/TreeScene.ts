@@ -2,13 +2,15 @@ import Drawable from "../rendering/gl/Drawable";
 import {gl} from '../globals';
 import CustomMesh from 'CustomMesh';
 
-export default class Scene extends Drawable {
+export default class TreeScene extends Drawable {
     indices: Uint32Array;
     positions: Float32Array;
     normals: Float32Array;
+    // colors: Float32Array;
 
     pos =  new Array<number>();
     nor =  new Array<number>();
+    // col =  new Array<number>();
     idx = new Array<number>();
 
     public addMesh(mesh: CustomMesh) {
@@ -42,5 +44,7 @@ export default class Scene extends Drawable {
 
         gl.bindBuffer(gl.ARRAY_BUFFER, this.bufPos);
         gl.bufferData(gl.ARRAY_BUFFER, this.positions, gl.STATIC_DRAW);
+
     }
 };
+

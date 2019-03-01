@@ -22,4 +22,5 @@ export function readTextFile(file: string): string
   }
   rawFile.send(null);
   return text;
+
 }
